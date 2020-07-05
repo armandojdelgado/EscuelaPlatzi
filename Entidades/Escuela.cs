@@ -7,7 +7,7 @@ namespace CoreEscuela.Entidades
         //Se protege dentro de una propiedad
         public string Nombre
         {
-            get { return "Copia: " + nombre; }
+            get { return nombre; }
             set { nombre = value.ToUpper(); } //Indicamos que al asignar dejarlo en mayuscula
         }
 
@@ -20,13 +20,8 @@ namespace CoreEscuela.Entidades
         public string Ciudad { get; set; }
 
         //Propfull
-        private int myVar;
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
-
+        public TiposEscuela TipoEscuela {get; set;}
+        
         /*
         public Escuela(string nombre, int año) 
         {
@@ -41,7 +36,11 @@ namespace CoreEscuela.Entidades
         //Igualación por tuplas
         public Escuela (string nombre, int año) => (Nombre,AñoDeCreacion)=(nombre,año);
 
-        
+        //public override string ToString() => $"Nombre: {Nombre}, Tipo: {TipoEscuela}, \n Pais: {Pais}, Ciudad: {Ciudad}";
+        public override string ToString()
+        {
+            return $"Nombre: {Nombre}, Tipo: {TipoEscuela}, \nPais: {Pais}, Ciudad: {Ciudad}";
+        }
 
     }
 }

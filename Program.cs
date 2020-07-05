@@ -10,7 +10,8 @@ namespace Etapa1
             var escuela = new Escuela("Platzi Academy",2020); //Se preciona Ctl + . para agregar el espacio de nombres
             escuela.Pais = "Colombia";
             escuela.Ciudad = "Cali";
-            Console.WriteLine(escuela.Nombre);
+            escuela.TipoEscuela = TiposEscuela.Primaria;
+            Console.WriteLine(escuela);
         }
     }
 }
