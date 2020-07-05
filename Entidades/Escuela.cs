@@ -11,7 +11,7 @@ namespace CoreEscuela.Entidades
             set { nombre = value.ToUpper(); } //Indicamos que al asignar dejarlo en mayuscula
         }
 
-        //shorcut de propiedad, 
+        //PROPIEDAD AUTOIMPLEMENTADA
         //el compilador crea una variable añoDeCreacion
         public int AñoDeCreacion{get;set;}
 
@@ -36,10 +36,23 @@ namespace CoreEscuela.Entidades
         //Igualación por tuplas
         public Escuela (string nombre, int año) => (Nombre,AñoDeCreacion)=(nombre,año);
 
+        //Sobrecarga del Constructor
+        public Escuela(string nombre, int año, 
+                        TiposEscuela tipo, 
+                        string pais = "", 
+                        string ciudad = "")
+        {
+            //Asignación de tuplas
+            (Nombre,AñoDeCreacion)=(nombre,año);
+            //Asignación normal
+            Pais = pais;
+            Ciudad = ciudad;
+        }
+
         //public override string ToString() => $"Nombre: {Nombre}, Tipo: {TipoEscuela}, \n Pais: {Pais}, Ciudad: {Ciudad}";
         public override string ToString()
         {
-            return $"Nombre: {Nombre}, Tipo: {TipoEscuela}, \nPais: {Pais}, Ciudad: {Ciudad}";
+            return $"Nombre: \"{Nombre}\", Tipo: {TipoEscuela}, \nPais: {Pais}, {System.Environment.NewLine} Ciudad: {Ciudad}";
         }
 
     }

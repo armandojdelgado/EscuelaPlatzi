@@ -7,10 +7,12 @@ namespace Etapa1
     {
         static void Main(string[] args)
         {
-            var escuela = new Escuela("Platzi Academy",2020); //Se preciona Ctl + . para agregar el espacio de nombres
+            //Se preciona Ctl + . para agregar el espacio de nombres
+            var escuela = new Escuela("Platzi Academy",2020, 
+                            TiposEscuela.Primaria,
+                            ciudad: "Cali"); 
             escuela.Pais = "Colombia";
             escuela.Ciudad = "Cali";
-            escuela.TipoEscuela = TiposEscuela.Primaria;
             Console.WriteLine(escuela);
         }
     }
