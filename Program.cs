@@ -64,19 +64,55 @@ namespace Etapa1
             */
 
             //Se crea metodo para que imprima curso
-            ImprimirCursos(arregloCursos);
+            Console.WriteLine("RECORRIDO CON WHILE");
+            ImprimirCursosWhile(arregloCursos);
+            Console.WriteLine("RECORRIDO CON DO WHILE");
+            ImprimirCursosDoWhile(arregloCursos);
+            Console.WriteLine("RECORRE CON FOR");
+            ImprimirCursosFor(arregloCursos);
+            Console.WriteLine("RECORRIDO CON FOREACH");
+            ImprimirCursosForEach(arregloCursos);
         }
 
-        private static void ImprimirCursos(Curso[] arregloCursos)
+        private static void ImprimirCursosWhile(Curso[] arregloCursos)
         {
             int contador = 0;
-           while(contador< arregloCursos.Length)
-           {
-               Console.WriteLine($"Nombre: {arregloCursos[contador].Nombre} , ID: {arregloCursos[contador].UniqueId}");
-              // contador = contador + 1;
-              //contador += 1;
-              contador++;
-           }
+            while (contador < arregloCursos.Length)
+            {
+                Console.WriteLine($"Nombre: {arregloCursos[contador].Nombre} , ID: {arregloCursos[contador].UniqueId}");
+                // contador = contador + 1;
+                //contador += 1;
+                contador++;
+            }
+        }
+
+        private static void ImprimirCursosDoWhile(Curso[] arregloCursos)
+        {
+            int contador = 0;
+            do
+            {
+                Console.WriteLine($"Nombre: {arregloCursos[contador].Nombre} , ID: {arregloCursos[contador].UniqueId}");
+                // contador = contador + 1;
+                //contador += 1;
+                contador++;
+            } while (contador < arregloCursos.Length);
+        }
+
+        private static void ImprimirCursosFor(Curso[] arregloCursos)
+        {
+            for (int i = 0; i < arregloCursos.Length; i++)
+            {
+                Console.WriteLine($"Nombre: {arregloCursos[i].Nombre} , ID: {arregloCursos[i].UniqueId}");
+            }
+
+        }
+
+        private static void ImprimirCursosForEach(Curso[] arregloCursos)
+        {
+            foreach (var curso in arregloCursos)
+            {
+                Console.WriteLine($"Nombre: {curso.Nombre} , ID: {curso.UniqueId}");
+            }
         }
     }
 }
