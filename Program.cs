@@ -1,5 +1,7 @@
 ﻿using System;
 using CoreEscuela.Entidades;
+//Carga la libreria Consola, permite usar sus metodos sin necesidad de colocar Console
+using static System.Console;
 
 namespace Etapa1
 {
@@ -11,10 +13,12 @@ namespace Etapa1
             var escuela = new Escuela("Platzi Academy", 2020,
                             TiposEscuela.Primaria,
                             ciudad: "Cali");
+
             //escuela.Pais = "Colombia";
             //escuela.Ciudad = "Cali";
 
             //Se crea un curso
+            /*
             var curso1 = new Curso()
             {
                 Nombre = "101"
@@ -29,8 +33,9 @@ namespace Etapa1
             {
                 Nombre = "301"
             };
-
+*/
             //Arreglo de objetos
+            /*
             var arregloCursos = new Curso[3];
 
             //Se asinga la posición 0 del arreglo, forma de asignar:
@@ -47,6 +52,28 @@ namespace Etapa1
             {
                 Nombre = "301"
             };
+            */
+
+            //otra forma de crear un arreglo de objetos de una forma mas ordenada
+            /*
+            var arregloCursos = new Curso[3]
+            {
+                new Curso(){Nombre = "101"},
+                new Curso(){Nombre = "201"},
+                new Curso(){Nombre = "301"}
+            };
+            */
+            //optimización
+
+            escuela.Cursos = new Curso[]
+            {
+                new Curso(){Nombre = "101"},
+                new Curso(){Nombre = "201"},
+                new Curso(){Nombre = "301"}
+            };
+
+
+
 
             Console.WriteLine(escuela);//al imprimir el objeto se llama implicitamente el ToString
 
@@ -64,14 +91,34 @@ namespace Etapa1
             */
 
             //Se crea metodo para que imprima curso
+            /*
             Console.WriteLine("RECORRIDO CON WHILE");
-            ImprimirCursosWhile(arregloCursos);
+            ImprimirCursosWhile(escuela.Cursos);
             Console.WriteLine("RECORRIDO CON DO WHILE");
-            ImprimirCursosDoWhile(arregloCursos);
+            ImprimirCursosDoWhile(escuela.Cursos);
             Console.WriteLine("RECORRE CON FOR");
-            ImprimirCursosFor(arregloCursos);
+            ImprimirCursosFor(escuela.Cursos);
             Console.WriteLine("RECORRIDO CON FOREACH");
-            ImprimirCursosForEach(arregloCursos);
+            ImprimirCursosForEach(escuela.Cursos);
+            */
+            
+            ImprimirCursosEscuela(escuela); //Se presiona Ctl + . para que Code cree el metodo
+        }
+
+        private static void ImprimirCursosEscuela(Escuela escuela)
+        {
+            //if (escuela!=null && escuela.Cursos!=null)
+            if (escuela?.Cursos!=null) //No va a validar Curso, salvo que escuela sea diferente de nulo
+            {
+                //using static System.Console; Hace que no sea necesario colocar Console
+                WriteLine("********************");
+                WriteLine("CURSOS DE LA ESCUELA");
+                WriteLine("********************");
+                foreach (var curso in escuela.Cursos)
+                {
+                    WriteLine($"Nombre: {curso.Nombre} , ID: {curso.UniqueId}");
+                }
+            }
         }
 
         private static void ImprimirCursosWhile(Curso[] arregloCursos)

@@ -22,6 +22,8 @@ namespace CoreEscuela.Entidades
         //Propfull
         public TiposEscuela TipoEscuela {get; set;}
         
+        public Curso[] Cursos {get;set;}
+
         /*
         public Escuela(string nombre, int año) 
         {
