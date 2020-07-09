@@ -103,6 +103,36 @@ namespace Etapa1
             */
             
             ImprimirCursosEscuela(escuela); //Se presiona Ctl + . para que Code cree el metodo
+
+            bool rta = 10==10;
+            int cantidad =10;
+            if (rta == false)
+            {
+                WriteLine("Se cumplio la condición #1");
+            }else if(cantidad > 15)
+            {
+                WriteLine("Se cumplio la condicion #2");
+            }
+            else
+            {
+                WriteLine("No se cumplio la condición #3");
+            }
+
+            if (cantidad > 5 && rta)
+            {
+                WriteLine("Se cumplio la condición #4");
+            }
+
+            if (cantidad >15 || rta)
+            {
+                WriteLine("Se cumplio la condición #5");
+            }
+
+            cantidad = 10;
+            if ((cantidad > 15 || !rta) && (cantidad%5==0))
+            {
+                WriteLine("Se cumplio la condición #6");
+            }
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
