@@ -21,12 +21,12 @@ namespace Etapa1
                     new Curso(){Nombre = "201", Jornada = TiposJornada.Mañana},
                     new Curso(){Nombre = "301", Jornada = TiposJornada.Mañana}
                 };
-            
-            escuela.Cursos.Add(new Curso(){Nombre = "102", Jornada = TiposJornada.Tarde});
-            escuela.Cursos.Add(new Curso(){Nombre = "202", Jornada = TiposJornada.Tarde});
+
+            escuela.Cursos.Add(new Curso() { Nombre = "102", Jornada = TiposJornada.Tarde });
+            escuela.Cursos.Add(new Curso() { Nombre = "202", Jornada = TiposJornada.Tarde });
 
             //creamos otra colección
-            var otraColeccion= new List<Curso>()
+            var otraColeccion = new List<Curso>()
             {
                 new Curso(){Nombre = "401", Jornada = TiposJornada.Mañana},
                 new Curso(){Nombre = "501", Jornada = TiposJornada.Mañana},
@@ -34,19 +34,30 @@ namespace Etapa1
             };
 
             //Se crea un nuevo objeto curso
-            Curso temp = new Curso(){Nombre = "101-Vacacional", Jornada=TiposJornada.Noche};
+            Curso temp = new Curso() { Nombre = "101-Vacacional", Jornada = TiposJornada.Noche };
             //Se adiciona a la Lista Cursos otra coleccion de Lista cursos
             escuela.Cursos.AddRange(otraColeccion);
             //Se adiciona el nuevo curso a la coleccion como un solo elemento.
             escuela.Cursos.Add(temp);
             ImprimirCursosEscuela(escuela); //Se presiona Ctl + . para que Code cree el metodo
             //El sistema borra segun el HashCode
-            WriteLine("Curso.Hash: "+ temp.GetHashCode());
+            //WriteLine("Curso.Hash: "+ temp.GetHashCode());
             //Despues de mostrar los cursos de la escuela, se procede a eliminar un curso
-            escuela.Cursos.Remove(temp);
-            //Se valida que el curso eliminado no este dentro de la coleccion Cursos
-            ImprimirCursosEscuela(escuela); 
+            //escuela.Cursos.Remove(temp);
 
+            Predicate<Curso> miAlgoritmo = Predicado;
+
+            //Remover segun indice
+            escuela.Cursos.RemoveAll(miAlgoritmo);
+
+            //Se valida que el curso eliminado no este dentro de la coleccion Cursos
+            ImprimirCursosEscuela(escuela);
+
+        }
+  
+        private static bool Predicado(Curso obj)
+        {
+            return obj.Nombre == "301";
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
