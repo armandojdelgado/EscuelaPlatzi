@@ -33,18 +33,19 @@ namespace Etapa1
                 new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde}
             };
 
+            //Se crea un nuevo objeto curso
+            Curso temp = new Curso(){Nombre = "101-Vacacional", Jornada=TiposJornada.Noche};
+            //Se adiciona a la Lista Cursos otra coleccion de Lista cursos
             escuela.Cursos.AddRange(otraColeccion);
-
-            //Eliminar los miembros de la colección
-            otraColeccion.Clear();
-            
-
-            Console.WriteLine(escuela);//al imprimir el objeto se llama implicitamente el ToString
-
-            System.Console.WriteLine("============");
-
+            //Se adiciona el nuevo curso a la coleccion como un solo elemento.
+            escuela.Cursos.Add(temp);
             ImprimirCursosEscuela(escuela); //Se presiona Ctl + . para que Code cree el metodo
-
+            //El sistema borra segun el HashCode
+            WriteLine("Curso.Hash: "+ temp.GetHashCode());
+            //Despues de mostrar los cursos de la escuela, se procede a eliminar un curso
+            escuela.Cursos.Remove(temp);
+            //Se valida que el curso eliminado no este dentro de la coleccion Cursos
+            ImprimirCursosEscuela(escuela); 
 
         }
 
