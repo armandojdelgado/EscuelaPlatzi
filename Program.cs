@@ -30,27 +30,18 @@ namespace Etapa1
             {
                 new Curso(){Nombre = "401", Jornada = TiposJornada.Mañana},
                 new Curso(){Nombre = "501", Jornada = TiposJornada.Mañana},
-                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde}
+                new Curso(){Nombre = "502", Jornada = TiposJornada.Tarde},
+                new Curso(){Nombre = "501", Jornada = TiposJornada.Tarde}
             };
 
-            //Se crea un nuevo objeto curso
-            Curso temp = new Curso() { Nombre = "101-Vacacional", Jornada = TiposJornada.Noche };
-            //Se adiciona a la Lista Cursos otra coleccion de Lista cursos
             escuela.Cursos.AddRange(otraColeccion);
-            //Se adiciona el nuevo curso a la coleccion como un solo elemento.
-            escuela.Cursos.Add(temp);
             ImprimirCursosEscuela(escuela); //Se presiona Ctl + . para que Code cree el metodo
-            //El sistema borra segun el HashCode
-            //WriteLine("Curso.Hash: "+ temp.GetHashCode());
-            //Despues de mostrar los cursos de la escuela, se procede a eliminar un curso
-            //escuela.Cursos.Remove(temp);
-
-            Predicate<Curso> miAlgoritmo = Predicado;
-
-            //Remover segun indice
-            escuela.Cursos.RemoveAll(miAlgoritmo);
-
-            //Se valida que el curso eliminado no este dentro de la coleccion Cursos
+            //Predicate<Curso> miAlgoritmo = Predicado;
+            escuela.Cursos.RemoveAll(delegate (Curso cur){
+                                        return cur.Nombre =="301";
+                                    });
+            escuela.Cursos.RemoveAll(cur=>cur.Nombre=="501" && cur.Jornada==TiposJornada.Mañana);
+            
             ImprimirCursosEscuela(escuela);
 
         }
