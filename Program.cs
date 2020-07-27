@@ -15,11 +15,10 @@ namespace CoreEscuela
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.WriteTitle("Bienvenidos a la escuela");
-            Printer.Beep(frequency:1000, cantidad:10);
-            ImprimirCursosEscuela(engine.Escuela);
-
+            Printer.Beep(frequency: 1000, cantidad: 10);
+            ImprimirCursosEscuela(engine.Escuela);            
         }
-  
+
         private static bool Predicado(Curso obj)
         {
             return obj.Nombre == "301";
@@ -36,9 +35,17 @@ namespace CoreEscuela
                 foreach (var curso in escuela.Cursos)
                 {
                     WriteLine($"Nombre: {curso.Nombre} , ID: {curso.UniqueId}");
+                    //ImprimirEvaluaciones(curso);
                 }
             }
         }
 
+        private static void ImprimirEvaluaciones(Curso curso)
+        {
+            foreach (var ev in  curso.Evaluaciones)
+            {
+                System.Console.WriteLine(ev.ToString());
+            }            
+        }
     }
 }

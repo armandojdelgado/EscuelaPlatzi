@@ -15,6 +15,8 @@ namespace CoreEscuela.Entidades
         public List<Asignatura> Asignaturas {get;set;}
 
         public List<Alumno> Alumnos {get; set;}
+
+        public List<Evaluacion> Evaluaciones {get; set;}
         
         //Se crea un contructor
         public Curso()
