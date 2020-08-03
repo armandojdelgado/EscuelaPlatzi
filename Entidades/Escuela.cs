@@ -3,53 +3,26 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuela
+    public class Escuela : ObjetoEscuelaBase
     {
-        public string UniqueId { get; private set;} = Guid.NewGuid().ToString();
-        string nombre;
-
-        //Se protege dentro de una propiedad
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value.ToUpper(); } //Indicamos que al asignar dejarlo en mayuscula
-        }
-
-        //PROPIEDAD AUTOIMPLEMENTADA
-        //el compilador crea una variable añoDeCreacion
-        public int AñoDeCreacion{get;set;}
-
-        //Prop, atajo para crear una propiedad
+        public int AñoDeCreacion { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
 
-        //Propfull
-        public TiposEscuela TipoEscuela {get; set;}
-        
-        public List<Curso> Cursos {get;set;}
+        public TiposEscuela TipoEscuela { get; set; }
 
-        /*
-        public Escuela(string nombre, int año) 
-        {
-            this.nombre = nombre;
-            AñoDeCreacion = año;
-        }
-        */
+        public List<Curso> Cursos { get; set; }
 
-        //El constructor es un metodo
-        //otra forma de escribir el metodo contructor
-        //Constructor => (Propieades)=(atributos)
-        //Igualación por tuplas
-        public Escuela (string nombre, int año) => (Nombre,AñoDeCreacion)=(nombre,año);
+        public Escuela(string nombre, int año) => (Nombre, AñoDeCreacion) = (nombre, año);
 
         //Sobrecarga del Constructor
-        public Escuela(string nombre, int año, 
-                        TiposEscuela tipo, 
-                        string pais = "", 
+        public Escuela(string nombre, int año,
+                        TiposEscuela tipo,
+                        string pais = "",
                         string ciudad = "")
         {
             //Asignación de tuplas
-            (Nombre,AñoDeCreacion)=(nombre,año);
+            (Nombre, AñoDeCreacion) = (nombre, año);
             //Asignación normal
             Pais = pais;
             Ciudad = ciudad;
