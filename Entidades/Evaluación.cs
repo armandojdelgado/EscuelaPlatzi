@@ -2,12 +2,12 @@ using System;
 
 namespace CoreEscuela.Entidades
 {
-    public class Evaluacion
+    public class Evaluación
     {
         public string UniqueId { get; private set;}
         public string Nombre { get; set; }
 
-        public Evaluacion() => UniqueId = Guid.NewGuid().ToString();
+        public Evaluación() => UniqueId = Guid.NewGuid().ToString();
 
         public Alumno Alumno {get; set;}
 

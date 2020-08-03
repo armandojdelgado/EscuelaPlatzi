@@ -34,23 +34,27 @@ namespace CoreEscuela.App
 
         private void CargarEvaluaciones()
         {
-            Random rnd = new Random();
-            int[] nroevaluacion = { 1, 2, 3, 4, 5 };
-            foreach (var cur in Escuela.Cursos)
+            foreach(var curso in Escuela.Cursos)
             {
-                var listEvaluacion = from asi in cur.Asignaturas
-                                     from al in cur.Alumnos
-                                     from nro in nroevaluacion
-                                     select new Evaluacion
-                                     {
-                                         Nombre = asi.Nombre + " #" + nro,
-                                         Alumno = al,
-                                         Asignatura = asi,
-                                         Nota = ObtenerNota(rnd)
-                                     };
-                cur.Evaluaciones = listEvaluacion.ToList();
+                foreach(var asignatura in curso.Asignaturas)
+                {
+                    foreach(var alumno in curso.Alumnos)
+                    {
+                        var rnd = new Random(System.Environment.TickCount);
+                        for (int i=0; i<5; i++)
+                        {
+                            var ev = new Evaluación
+                            {
+                                Asignatura = asignatura,
+                                Nombre = $"{asignatura.Nombre} Ev#{i+1}",
+                                Nota = (float)(5*rnd.NextDouble()),
+                                Alumno = alumno
+                            };
+                            alumno.Evaluaciones.Add(ev);
+                        }                        
+                    }
+                }
             }
-
         }
 
         private float ObtenerNota(Random rnd) => (float)Math.Round((5.0 * rnd.NextDouble()), 1);

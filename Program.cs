@@ -40,12 +40,12 @@ namespace CoreEscuela
             }
         }
 
-        private static void ImprimirEvaluaciones(Curso curso)
+        /*private static void ImprimirEvaluaciones(Curso curso)
         {
             foreach (var ev in  curso.Evaluaciones)
             {
                 System.Console.WriteLine(ev.ToString());
             }            
-        }
+        }*/
     }
 }

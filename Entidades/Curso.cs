@@ -16,7 +16,8 @@ namespace CoreEscuela.Entidades
 
         public List<Alumno> Alumnos {get; set;}
 
-        public List<Evaluacion> Evaluaciones {get; set;}
+        //No aplica, ahora el alumno sabra cuales son sus evaluaciones
+        //public List<Evaluación> Evaluaciones {get; set;}
         
         //Se crea un contructor
         public Curso()
