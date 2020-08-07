@@ -9,21 +9,21 @@ namespace CoreEscuela.App
     public sealed class EscuelaEngine
     {
 
-        public EscuelaEngine(Escuela escuela)
-        {
-            this.Escuela = escuela;
-
-        }
-        public Escuela Escuela { get; set; }
+        public Escuela escuela { get; set; }
 
         public EscuelaEngine()
         {
 
         }
+         public EscuelaEngine(Escuela escuela)
+        {
+            this.escuela = escuela;
+
+        }
 
         public void Inicializar()
         {
-            Escuela = new Escuela("Platzi Academy", 2020,
+            escuela = new Escuela("Platzi Academia", 2020,
                             TiposEscuela.Primaria,
                             ciudad: "Cali");
 
@@ -34,7 +34,7 @@ namespace CoreEscuela.App
 
         private void CargarEvaluaciones()
         {
-            foreach (var curso in Escuela.Cursos)
+            foreach (var curso in escuela.Cursos)
             {
                 foreach (var asignatura in curso.Asignaturas)
                 {
@@ -61,7 +61,7 @@ namespace CoreEscuela.App
 
         private void CargarAsignaturas()
         {
-            foreach (var curso in Escuela.Cursos)
+            foreach (var curso in escuela.Cursos)
             {
                 List<Asignatura> listaAsignaturas = new List<Asignatura>()
                     {
@@ -91,7 +91,7 @@ namespace CoreEscuela.App
 
         private void CargarCursos()
         {
-            Escuela.Cursos = new List<Curso>()
+            escuela.Cursos = new List<Curso>()
                 {
                     new Curso(){Nombre = "101", Jornada = TiposJornada.Mañana},
                     new Curso(){Nombre = "201", Jornada = TiposJornada.Mañana},
@@ -102,7 +102,7 @@ namespace CoreEscuela.App
 
             Random rnd = new Random();
             //Para cada curso genero de 5 a 20 Alumnos
-            foreach (var curso in Escuela.Cursos)
+            foreach (var curso in escuela.Cursos)
             {
                 int cantRandom = rnd.Next(5, 20);
                 curso.Alumnos = GenerarAlumnosAlAzar(cantRandom);
@@ -112,9 +112,9 @@ namespace CoreEscuela.App
         public List<ObjetoEscuelaBase> GetObjetosEscuelas()
         {
             var listaObj = new List<ObjetoEscuelaBase>();
-            listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
-            foreach (var curso in Escuela.Cursos)
+            listaObj.Add(escuela);
+            listaObj.AddRange(escuela.Cursos);
+            foreach (var curso in escuela.Cursos)
             {
                 listaObj.AddRange(curso.Asignaturas);
                 listaObj.AddRange(curso.Alumnos);

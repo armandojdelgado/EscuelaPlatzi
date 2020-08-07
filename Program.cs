@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.util;
@@ -16,8 +17,14 @@ namespace CoreEscuela
             engine.Inicializar();
             Printer.WriteTitle("Bienvenidos a la escuela");
             //Printer.Beep(frequency: 1000, cantidad: 10);
-            ImprimirCursosEscuela(engine.Escuela);            
+            ImprimirCursosEscuela(engine.escuela);            
             var listaObjetos = engine.GetObjetosEscuelas();
+
+            //engine.escuela.LimpiarLugar();
+
+            var listaILugar = from obj in listaObjetos
+                        where obj is Alumno
+                        select (Alumno) obj;
 
         }
 
