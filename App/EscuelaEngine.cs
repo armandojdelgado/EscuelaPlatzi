@@ -11,16 +11,19 @@ namespace CoreEscuela.App
 
         public Escuela escuela { get; set; }
 
+        #region constructores
         public EscuelaEngine()
         {
 
         }
-         public EscuelaEngine(Escuela escuela)
+        public EscuelaEngine(Escuela escuela)
         {
             this.escuela = escuela;
 
         }
+        #endregion
 
+        #region Métodos
         public void Inicializar()
         {
             escuela = new Escuela("Platzi Academia", 2020,
@@ -32,6 +35,42 @@ namespace CoreEscuela.App
             CargarEvaluaciones();
         }
 
+        private List<Alumno> GenerarAlumnosAlAzar(int cantidadAlumnos)
+        {
+            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Donald", "Alvaro", "Nicolas" };
+            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo" };
+            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murthy", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
+
+            //se realiza una combinatoria con arreglos
+            //Linq lenguaje envevido de consulta
+            var listaAlumnos = from n1 in nombre1 //Por cada nombre 1 se combinara con nombre 2 y se combinara con apellido1
+                               from n2 in nombre2
+                               from a1 in apellido1
+                               select new Alumno { Nombre = $"{n1} {n2} {a1}" };
+            return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos).ToList();
+        }
+
+        public List<ObjetoEscuelaBase> GetObjetosEscuelas()
+        {
+            var listaObj = new List<ObjetoEscuelaBase>();
+            listaObj.Add(escuela);
+            listaObj.AddRange(escuela.Cursos);
+            foreach (var curso in escuela.Cursos)
+            {
+                listaObj.AddRange(curso.Asignaturas);
+                listaObj.AddRange(curso.Alumnos);
+                foreach (var alumno in curso.Alumnos)
+                {
+                    listaObj.AddRange(alumno.Evaluaciones);
+                }
+            }
+            return listaObj;
+        }
+
+        private float ObtenerNota(Random rnd) => (float)Math.Round((5.0 * rnd.NextDouble()), 1);
+        #endregion
+        
+        #region Métodos de carga
         private void CargarEvaluaciones()
         {
             foreach (var curso in escuela.Cursos)
@@ -57,8 +96,6 @@ namespace CoreEscuela.App
             }
         }
 
-        private float ObtenerNota(Random rnd) => (float)Math.Round((5.0 * rnd.NextDouble()), 1);
-
         private void CargarAsignaturas()
         {
             foreach (var curso in escuela.Cursos)
@@ -72,21 +109,6 @@ namespace CoreEscuela.App
                     };
                 curso.Asignaturas = listaAsignaturas;
             }
-        }
-
-        private List<Alumno> GenerarAlumnosAlAzar(int cantidadAlumnos)
-        {
-            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Donald", "Alvaro", "Nicolas" };
-            string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo" };
-            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murthy", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
-
-            //se realiza una combinatoria con arreglos
-            //Linq lenguaje envevido de consulta
-            var listaAlumnos = from n1 in nombre1 //Por cada nombre 1 se combinara con nombre 2 y se combinara con apellido1
-                               from n2 in nombre2
-                               from a1 in apellido1
-                               select new Alumno { Nombre = $"{n1} {n2} {a1}" };
-            return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidadAlumnos).ToList();
         }
 
         private void CargarCursos()
@@ -108,23 +130,6 @@ namespace CoreEscuela.App
                 curso.Alumnos = GenerarAlumnosAlAzar(cantRandom);
             }
         }
-
-        public List<ObjetoEscuelaBase> GetObjetosEscuelas()
-        {
-            var listaObj = new List<ObjetoEscuelaBase>();
-            listaObj.Add(escuela);
-            listaObj.AddRange(escuela.Cursos);
-            foreach (var curso in escuela.Cursos)
-            {
-                listaObj.AddRange(curso.Asignaturas);
-                listaObj.AddRange(curso.Alumnos);
-                foreach (var alumno in curso.Alumnos)
-                {
-                    listaObj.AddRange(alumno.Evaluaciones);
-                }
-            }
-            return listaObj;
-        }
-        
     }
+    #endregion
 }
