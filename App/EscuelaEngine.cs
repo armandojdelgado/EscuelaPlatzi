@@ -116,7 +116,6 @@ namespace CoreEscuela.App
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-        
         #endregion
 
         #region Métodos de carga

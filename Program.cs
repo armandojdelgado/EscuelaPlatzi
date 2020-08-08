@@ -17,9 +17,24 @@ namespace CoreEscuela
             engine.Inicializar();
             Printer.WriteTitle("Bienvenidos a la escuela");
             //Printer.Beep(frequency: 1000, cantidad: 10);
-            ImprimirCursosEscuela(engine.escuela);   
-            var listaObjetos = engine.GetObjetosEscuelas();
+            Dictionary<int,string> diccionario = new Dictionary<int, string>();
+            diccionario.Add(10,"JuanK");
+            diccionario.Add(23,"Lorem Ipsum");
             
+            foreach(var keyValPair in diccionario)
+            {
+                WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value} ");
+            }
+            Printer.WriteTitle("Acceso a dicionario");
+            diccionario.Add(0,"ADG");
+            WriteLine(diccionario[0]);
+
+            Printer.WriteTitle("Otro diccionario");
+            var dic = new Dictionary<string,string>();
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dic["Luna"]);
+            dic["Luna"] = "Protagonista de Soy Luna";
+            WriteLine(dic["Luna"]);
         }
 
         private static bool Predicado(Curso obj)
@@ -42,13 +57,5 @@ namespace CoreEscuela
                 }
             }
         }
-
-        /*private static void ImprimirEvaluaciones(Curso curso)
-        {
-            foreach (var ev in  curso.Evaluaciones)
-            {
-                System.Console.WriteLine(ev.ToString());
-            }            
-        }*/
     }
 }
