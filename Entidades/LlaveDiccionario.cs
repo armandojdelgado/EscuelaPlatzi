@@ -5,7 +5,7 @@ public enum LlaveDiccionario
     Curso,
     Asignatura,
     Escuela,
-    Evaluacion
+    Evaluación
 
 
 }

@@ -96,31 +96,50 @@ namespace CoreEscuela.App
         }
 
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
-            (out int conteoEvaluaciones,bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
+            (out int conteoEvaluaciones, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out _, out _, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
-            (out int conteoEvaluaciones, out int conteoAlumnos, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
+           (out int conteoEvaluaciones, out int conteoAlumnos, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out conteoAlumnos, out _, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
-            (out int conteoEvaluaciones, out int conteoAlumnos, out int conteoAsignaturas, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
+           (out int conteoEvaluaciones, out int conteoAlumnos, out int conteoAsignaturas, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out conteoAlumnos, out conteoAsignaturas, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-        public Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
+        public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
         {
-            var diccionario = new Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>>();
-            diccionario.Add(LlaveDiccionario.Escuela, new[ ]{escuela});
+            var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela, new[] { escuela });
             diccionario.Add(LlaveDiccionario.Curso, escuela.Cursos.Cast<ObjetoEscuelaBase>());
+
+            var listTmpAl = new List<Alumno>();
+            var listTmpAsig = new List<Asignatura>();
+            var listTmpEv = new List<Evaluación>();
+
+            foreach (var cur in escuela.Cursos)
+            {
+                listTmpAl.AddRange(cur.Alumnos);
+                listTmpAsig.AddRange(cur.Asignaturas);
+
+                foreach (var alum in cur.Alumnos)
+                {
+                    listTmpEv.AddRange(alum.Evaluaciones);
+                }
+            }
+            diccionario.Add(LlaveDiccionario.Alumno, listTmpAl);
+            diccionario.Add(LlaveDiccionario.Asignatura, listTmpAsig.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Evaluación, listTmpEv);
+
             return diccionario;
         }
 
