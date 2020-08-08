@@ -19,6 +19,7 @@ namespace CoreEscuela
             //Printer.Beep(frequency: 1000, cantidad: 10);
             ImprimirCursosEscuela(engine.escuela);   
             var listaObjetos = engine.GetObjetosEscuelas();
+            
         }
 
         private static bool Predicado(Curso obj)

@@ -52,7 +52,7 @@ namespace CoreEscuela.App
 
         private float ObtenerNota(Random rnd) => (float)Math.Round((5.0 * rnd.NextDouble()), 1);
 
-        public List<ObjetoEscuelaBase> GetObjetosEscuelas(
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas(
             out int conteoEvaluaciones, out int conteoAlumnos, out int conteoAsignaturas, out int conteoCursos,
             bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true
             )
@@ -85,31 +85,31 @@ namespace CoreEscuela.App
                     }
                 }
             }
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
 
-        public List<ObjetoEscuelaBase> GetObjetosEscuelas
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
             (bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out _, out _, out _, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-        public List<ObjetoEscuelaBase> GetObjetosEscuelas
+        public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
             (out int conteoEvaluaciones,bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out _, out _, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-         public List<ObjetoEscuelaBase> GetObjetosEscuelas
+         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
             (out int conteoEvaluaciones, out int conteoAlumnos, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out conteoAlumnos, out _, out _,
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-         public List<ObjetoEscuelaBase> GetObjetosEscuelas
+         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuelas
             (out int conteoEvaluaciones, out int conteoAlumnos, out int conteoAsignaturas, bool traeEvaluaciones = true, bool traeAlumnos = true, bool traeAsignaturas = true, bool traeCursos = true)
         {
             return GetObjetosEscuelas(out conteoEvaluaciones, out conteoAlumnos, out conteoAsignaturas, out _,
