@@ -13,6 +13,9 @@ namespace CoreEscuela
     {
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o,s)=>Printer.Beep(2000,1000,1);
+            
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.WriteTitle("Bienvenidos a la escuela");
@@ -26,7 +29,14 @@ namespace CoreEscuela
                 WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value} ");
             }
             var diccionarioTemp = engine.GetDiccionarioObjetos();
-            engine.ImprimirDiccionario(diccionarioTemp,true);
+            engine.ImprimirDiccionario(diccionarioTemp,false);
+        }
+
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+            Printer.WriteTitle("SALIENDO");
+            Printer.Beep(3000,1000,3);
+            Printer.WriteTitle("SALIO");
         }
 
         private static bool Predicado(Curso obj)
