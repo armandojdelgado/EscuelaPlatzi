@@ -116,11 +116,11 @@ namespace CoreEscuela.App
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
-        public Dictionary<string,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
+        public Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
         {
-            var diccionario = new Dictionary<string,IEnumerable<ObjetoEscuelaBase>>();
-            diccionario.Add("Escuela", new[ ]{escuela});
-            diccionario.Add("Cursos", escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            var diccionario = new Dictionary<LlaveDiccionario,IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add(LlaveDiccionario.Escuela, new[ ]{escuela});
+            diccionario.Add(LlaveDiccionario.Curso, escuela.Cursos.Cast<ObjetoEscuelaBase>());
             return diccionario;
         }
 
