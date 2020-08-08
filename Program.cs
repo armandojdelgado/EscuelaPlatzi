@@ -25,16 +25,7 @@ namespace CoreEscuela
             {
                 WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value} ");
             }
-            Printer.WriteTitle("Acceso a dicionario");
-            diccionario.Add(0,"ADG");
-            WriteLine(diccionario[0]);
-
-            Printer.WriteTitle("Otro diccionario");
-            var dic = new Dictionary<string,string>();
-            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
-            WriteLine(dic["Luna"]);
-            dic["Luna"] = "Protagonista de Soy Luna";
-            WriteLine(dic["Luna"]);
+            var diccionarioTemp = engine.GetDiccionarioObjetos();
         }
 
         private static bool Predicado(Curso obj)

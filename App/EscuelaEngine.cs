@@ -116,6 +116,14 @@ namespace CoreEscuela.App
                                     traeEvaluaciones, traeAlumnos, traeAsignaturas, traeCursos);
         }
 
+        public Dictionary<string,IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
+        {
+            var diccionario = new Dictionary<string,IEnumerable<ObjetoEscuelaBase>>();
+            diccionario.Add("Escuela", new[ ]{escuela});
+            diccionario.Add("Cursos", escuela.Cursos.Cast<ObjetoEscuelaBase>());
+            return diccionario;
+        }
+
         #endregion
 
         #region Métodos de carga
