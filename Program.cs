@@ -26,6 +26,7 @@ namespace CoreEscuela
                 WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value} ");
             }
             var diccionarioTemp = engine.GetDiccionarioObjetos();
+            engine.ImprimirDiccionario(diccionarioTemp);
         }
 
         private static bool Predicado(Curso obj)

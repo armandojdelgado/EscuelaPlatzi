@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreEscuela.Entidades;
-
+using CoreEscuela.util;
 
 namespace CoreEscuela.App
 {
@@ -141,6 +141,18 @@ namespace CoreEscuela.App
             diccionario.Add(LlaveDiccionario.Evaluación, listTmpEv);
 
             return diccionario;
+        }
+
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic)
+        {
+            foreach(var obj in dic)
+            {
+                Printer.WriteTitle(obj.Key.ToString());
+                foreach(var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+            }
         }
 
         #endregion
