@@ -24,6 +24,7 @@ namespace CoreEscuela
            //reporteador.GetListaEscuela();
            var evalList = reporteador.GetListaEvaluaciones();
            var listaAsig = reporteador.GetListaAsignaturas();
+           var listaEvalAsig = reporteador.GetDiccionarioEvaluacionesXAsignatura();
            
         }
 

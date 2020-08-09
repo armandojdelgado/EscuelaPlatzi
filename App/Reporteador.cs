@@ -42,9 +42,16 @@ namespace CoreEscuela.App
             }            
         }
 
+
         public IEnumerable<string> GetListaAsignaturas()
         {
+            return GetListaAsignaturas(out _);
+        }
+
+        public IEnumerable<string> GetListaAsignaturas(out IEnumerable<Evaluación> listaEv)
+        {
                 var listaEvaluaciones = GetListaEvaluaciones();
+                listaEv = listaEvaluaciones;
                 return (from Evaluación ev in listaEvaluaciones
                     select ev.Asignatura.Nombre).Distinct();
         }
@@ -52,6 +59,16 @@ namespace CoreEscuela.App
         public Dictionary<string,IEnumerable<Evaluación>> GetDiccionarioEvaluacionesXAsignatura()
         {
             var dicRta = new Dictionary<string,IEnumerable<Evaluación>>();
+
+            var listaAsig = GetListaAsignaturas(out var listaEva);
+            foreach(var asig in listaAsig)
+            {
+                var evalAsig = from eval in listaEva
+                        where eval.Asignatura.Nombre == asig
+                        select  eval;
+                
+                dicRta.Add(asig, evalAsig);
+            }
             return dicRta;
         }
     }
