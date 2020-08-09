@@ -79,15 +79,17 @@ namespace CoreEscuela.App
 
             foreach(var asigConEval in dicEvalPorAsig)
             {
-                var dummy = from eval in asigConEval.Value
+                var dummy = from eval in asigConEval.Value //Listado de evaluaciones
+                            group eval by new 
+                                {
+                                    eval.Alumno.UniqueId,
+                                }
+                            into grupoEvalAlumno                            
                             select new 
                             {
-                                eval.Alumno.UniqueId,
-                                AlumnoNombre = eval.Alumno.Nombre,
-                                NombreEval = eval.Nombre,
-                                eval.Nota,
+                                AlumnoId = grupoEvalAlumno.Key.UniqueId,
+                                Promedio = grupoEvalAlumno.Average( evaluacion=>evaluacion.Nota) //Se crea una variable interna que segun el contesto es una Evaluacion
                             };
-
             }
             return rta;
         }
