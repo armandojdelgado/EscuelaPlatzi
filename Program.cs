@@ -22,17 +22,17 @@ namespace CoreEscuela
 
             var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
             //reporteador.GetListaEscuela();
-           /* var evalList = reporteador.GetListaEvaluaciones();
-            var listaAsig = reporteador.GetListaAsignaturas();
-            var listaEvalAsig = reporteador.GetDiccionarioEvaluacionesXAsignatura();
-            var listaPromXAsig = reporteador.GetPromeAlumnPorAsignatura();
-            var topListaPromXAsig = reporteador.GetTopPromeAlumnPorAsignatura(5);
-*/
+            /* var evalList = reporteador.GetListaEvaluaciones();
+             var listaAsig = reporteador.GetListaAsignaturas();
+             var listaEvalAsig = reporteador.GetDiccionarioEvaluacionesXAsignatura();
+             var listaPromXAsig = reporteador.GetPromeAlumnPorAsignatura();
+             var topListaPromXAsig = reporteador.GetTopPromeAlumnPorAsignatura(5);
+ */
             Printer.WriteTitle("Captura de una Evaluación por Consola");
             var newEval = new Evaluación();
             string nombre, notaString;
             float nota;
-            
+
             WriteLine("Ingrese el nombre de la Evaluación:");
             Printer.PresioneEnter();
             nombre = Console.ReadLine();
@@ -60,21 +60,27 @@ namespace CoreEscuela
                 try
                 {
                     newEval.Nota = float.Parse(notaString);
-                    if(newEval.Nota<0 || newEval.Nota>5)
+                    if (newEval.Nota < 0 || newEval.Nota > 5)
                     {
                         throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
                     }
                     WriteLine("La nota de la evaluación ha sido ingresado correctamente");
+                    return;
                 }
-                catch(ArgumentOutOfRangeException e)
+                catch (ArgumentOutOfRangeException e)
                 {
                     WriteLine(e.Message);
                     WriteLine("Saliendo del programa");
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     WriteLine("El valor de la nota no es valida");
-                }                
+                }
+                finally
+                {
+                    Printer.WriteTitle("FINALLY");
+                    Printer.Beep(2500, 500, 3);
+                }
             }
         }
 
